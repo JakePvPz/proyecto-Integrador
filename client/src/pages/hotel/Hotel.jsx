@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleArrowLeft,
@@ -63,6 +64,8 @@ const Hotel = () => {
       navigate("/login");
     }
   };
+
+
   return (
     <div>
       <Navbar />
@@ -139,6 +142,7 @@ const Hotel = () => {
                   nights)
                 </h2>
                 <button onClick={handleClick}>Reserve or Book Now!</button>
+                
               </div>
             </div>
           </div>
@@ -146,7 +150,7 @@ const Hotel = () => {
           <Footer />
         </div>
       )}
-      {openModal && <Reserve setOpen={setOpenModal} hotelId={id}/>}
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </div>
   );
 };

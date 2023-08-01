@@ -7,6 +7,9 @@ import { useContext, useState } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import PayPalButton from '../../components/paypal/PayPalButton';
+
+
 
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
@@ -65,6 +68,17 @@ const Reserve = ({ setOpen, hotelId }) => {
       navigate("/");
     } catch (err) {}
   };
+
+  
+  const handlePaymentSuccess = data => {
+    // Handle the successful payment, e.g., show a success message to the user
+    console.log('Payment was successful:', data);
+  };
+
+  const handlePaymentError = err => {
+    // Handle the payment error, e.g., show an error message to the user
+    console.error('Payment failed:', err);
+  };
   return (
     <div className="reserve">
       <div className="rContainer">
@@ -99,9 +113,13 @@ const Reserve = ({ setOpen, hotelId }) => {
             </div>
           </div>
         ))}
-        <button onClick={handleClick} className="rButton">
-          Reserve Now!
-        </button>
+        <PayPalButton
+        amount={10} // Replace with the actual amount you want to charge
+        currency="USD" // Replace with the desired currency code (e.g., USD, EUR, etc.)
+        onSuccess={handlePaymentSuccess}
+        onError={handlePaymentError}
+      />
+       
       </div>
     </div>
   );
